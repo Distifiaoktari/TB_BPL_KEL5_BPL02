@@ -94,40 +94,10 @@ public class program {
 	}
 
 
-	private static void Restok() {
-		  {
-			  scanner = new Scanner(System.in);
-		        dataGudang = new DataGudang();
-		        
-		        System.out.println(" >> RE-STOK BARANG <<");
-		        
-		        
-		            lihatBarang();
-		            System.out.print("sku barang yang akan direstok ? ");
-		            String sku = scanner.nextLine();
-		            
-		            Gudang gudang = dataGudang.get(sku);
-		            
-		            System.out.println("nama ["+gudang.getnama()+"] ");
-		           
-		        
-		            
-		            System.out.print("stok ["+gudang.getstok()+"]: ");
-		            Integer stok = Integer.parseInt(scanner.nextLine());
-		            
-		            System.out.println("harga beli ["+gudang.getharga_beli()+"]");
-		           
-		            
-		            System.out.println("harga jual ["+gudang.getharga_jual()+"] ");
-		          
-		            
-		            Gudang gudangUpdate = new Gudang(stok);
-		            
-		            if(dataGudang.restok(sku, gudangUpdate) > 0){
-		                System.out.println("berhasil mengubah data!");
-		            }
-		        
-		    }
+	private static void Restok() throws SQLException {
+		  
+			  DataGudang.restok();
+		  
 		
 	}
 
@@ -351,7 +321,7 @@ public class program {
     }
     
     private static void Tunggu(){
-        System.out.print("\n\nTekan Enter untuk melanjutkan");
+        System.out.print("\n\nTekan Enter untuk kembali ke menu utama");
         scanner.nextLine();
     }
 

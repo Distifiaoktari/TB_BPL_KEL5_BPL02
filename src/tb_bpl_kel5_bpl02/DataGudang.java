@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class DataGudang {
@@ -15,7 +16,7 @@ public class DataGudang {
 	    static String PASSWORD = "";
 	    
 	    static Connection connection;
-	    
+	    static Statement stmt;
 	    public DataGudang() {
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
@@ -163,23 +164,40 @@ public class DataGudang {
 	        }
 	        return listGudang;
 	    }
-	    public int restok(String sku, Gudang gudang)
+	    public static void restok ()throws SQLException
 	    {
-	        Integer result = 0;
-	        String sql = "UPDATE barang SET stok = ? WHERE sku = ?";
-	        PreparedStatement statement;
-	        try {
-	            statement = connection.prepareStatement(sql);
-	            
-	            statement.setInt(2, gudang.getstok());
-	            
-	            
-	            statement.setString(5, sku);
-	            result = statement.executeUpdate();
-	        } catch (SQLException e) {
-	            System.out.println("Terjadi kesalahan query");
-	        }
-	        return result;
+	    	
+			Scanner sc = new Scanner (System.in);
+			System.out.println("==========================");
+	        System.out.println("======RE-STOK BARANG======");
+	        System.out.println("==========================");
+			System.out.print  ("SKU Barang\t: ");
+			String sku = sc.nextLine();
+			
+			try {
+				stmt = connection.createStatement();
+				String sql = "SELECT * FROM barang WHERE sku = '"+sku+"'";
+				ResultSet result = stmt.executeQuery(sql);
+				if (result.next()) {
+					String id = result.getString("sku");
+					Integer stok_db = result.getInt("stok");
+					System.out.print("Penambahan\t : ");
+					Integer tambah = sc.nextInt();
+					if (tambah>0) {
+					int newstock = Integer.valueOf(stok_db)+Integer.valueOf(tambah);
+					String sql2 = "UPDATE barang SET stok = '"+newstock+"' WHERE sku='"+sku+"'";
+					stmt.execute(sql2);
+					stmt.close();
+					System.out.println("stok berhasil diupdate!");}
+				
+				else {
+					System.out.println("bilangan yang dimasukkan salah!");	
+					}
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	    }
-
 }
