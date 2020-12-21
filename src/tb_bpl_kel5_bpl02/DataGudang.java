@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class DataGudang {
-	 static String DB_URL = "jdbc:mysql://localhost:3306/bpltb_kel5?serverTimezone=Asia/Jakarta";
+	    static String DB_URL = "jdbc:mysql://localhost:3306/bpltb_kel5?serverTimezone=Asia/Jakarta";
 	    static String USERNAME = "root";
 	    static String PASSWORD = "";
 	    

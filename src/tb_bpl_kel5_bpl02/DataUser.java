@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class DataUser {
 
-	Scanner scanner = new Scanner(System.in);
+	static Scanner scanner = new Scanner(System.in);
 	User user;
-	KelolaUser kelolaUser;
+	static KelolaUser kelolaUser;
     static Integer cek = 2;
-    private String email1 = null;
-	private String email2 = null;
-	private String email3 = null;
+    private static String email1 = null;
+	private static String email2 = null;
+	private static String email3 = null;
 	
 	public DataUser() {
 		try {
@@ -25,8 +25,8 @@ public class DataUser {
 	}
 
 	
-	void login() throws SQLException {
-		// TODO Auto-generated method stub 
+	public static void login() throws Exception {
+		System.out.println("====LOGIN SISTEM====");
 		System.out.print("Email    : ");
 		String email = scanner.nextLine();
 		
@@ -63,6 +63,7 @@ public class DataUser {
 		
 		if(kelolaUser.login(user) == 1){
 			 System.out.println("User berhasil Login!");
+			 program.menuUtama();
 			 
 		}
 		else {

@@ -11,61 +11,68 @@ public class program {
 	 static DataGudang dataGudang;
 	 static KelolaUser kelolaUser;
 	 static DataUser dataUser = new DataUser();
+
+	 public static int cek=2;
 	
 	 public static void main(String[] args) throws Exception  {
-		scanner = new Scanner(System.in);
-        dataGudang = new DataGudang();
-        kelolaUser = new KelolaUser();
-        Integer option = 0;
-         
-       do {
-    	System.out.println("==================");
-        System.out.println("====MENU UTAMA====");
-        System.out.println("==================");
-        System.out.println(" 1. Login");
-        System.out.println(" 2. User");
-        System.out.println(" 3. data master barang");
-        System.out.println(" 4. restok");
-        System.out.println(" 5. transaksi");
-        System.out.println(" 6. laporan");
-        System.out.println(" 0. Keluar");
-        System.out.print("\nPilihan Anda (1/2/3/4/5/0)? ");
-        option = Integer.parseInt(scanner.nextLine());
-        
-        switch (option) {
-            case 1:
-            System.out.println(" >> LOG IN <<");
-            System.out.println(" ");
-            dataUser.login();
-            break;
-            case 2:
-            user();
-            break;
-            case 3:
-            datamasterbarang();
-            break;
-            case 4:
-            Restok();
-            break;
-            case 5:
-            transaksi();
-            break;
-            case 6:
-            laporan();
-            break;
-            case 0:
-            break;
-            default:
-            System.out.println("Input tidak valid");
-        }
-        Tunggu();
-        
-    } while (option != 0); }
+		 
+		DataUser.login();
+	 }
+	 
+	 public static void menuUtama() throws Exception {
+		 scanner = new Scanner(System.in);
+	        dataGudang = new DataGudang();
+	        kelolaUser = new KelolaUser();
+	        Integer option = 0;
+	         
+	       do {
+	    	System.out.println("==================");
+	        System.out.println("====MENU UTAMA====");
+	        System.out.println("==================");
+	   
+	        System.out.println(" 1. User");
+	        System.out.println(" 2. data master barang");
+	        System.out.println(" 3. restok");
+	        System.out.println(" 4. transaksi");
+	        System.out.println(" 5. laporan");
+	        System.out.println(" 6. Log Out");
+	        System.out.print("\nPilihan Anda (1/2/3/4/5/6)? ");
+	        option = Integer.parseInt(scanner.nextLine());
+	        
+	        switch (option) {
+ 
+	            case 1:
+	            user();
+	            break;
+	            case 2:
+	            datamasterbarang();
+	            break;
+	            case 3:
+	            Restok();
+	            break;
+	            case 4:
+	            transaksi();
+	            break;
+	            case 5:
+	            laporan();
+	            break;
+	            case 6:
+	            DataUser.login();
+	            break;
+	            default:
+	            System.out.println("Input tidak valid");
+	        }
+	        Tunggu();
+	        
+	    } while (option != 0); 
+	       
+	 }
+	 
     
     
   
 	private static void laporan() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
