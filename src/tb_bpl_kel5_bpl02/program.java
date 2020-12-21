@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+
+
 public class program {
 	 static Scanner scanner;
 	    
 	 static DataGudang dataGudang;
 	 static KelolaUser kelolaUser;
+	 static transaksipenjualan Transaksi;
 	 static DataUser dataUser = new DataUser();
 
 	 public static int cek=2;
@@ -79,7 +82,15 @@ public class program {
 
 	private static void transaksi() {
 		// TODO Auto-generated method stub
-		
+		System.out.println(" >> TRANSAKSI BARANG <<");
+		Transaksi = new transaksipenjualan();
+		Transaksi.getAll();
+		Transaksi.skuinput();
+		Transaksi.Jumlahbarang();
+		Transaksi.jmlprocess();
+		Transaksi.hasilorder();
+		Transaksi.input();
+		Transaksi.show();
 	}
 
 

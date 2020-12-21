@@ -6,7 +6,9 @@ public class Gudang {
 	    private Integer stok;
 	    private Integer harga_beli;
 	    private Integer harga_jual;
-	    
+	    private String noresi;
+	    private Integer jumlah;
+	    String date;
 
 	    public Gudang() {
 
@@ -49,6 +51,18 @@ public class Gudang {
 	        this.harga_jual = harga_jual;
 	    }
 
+	    public void setnoresi(String noresi) {
+			this.noresi = noresi;
+		}
+		public String getnoresi() {
+			return noresi;
+		}
+		public void setjumlah(Integer jumlah) {
+			this.jumlah = jumlah;
+		}
+		public Integer getjumlah() {
+			return jumlah;
+		}
 	    
 
 	    public Gudang(String nama, Integer stok, Integer harga_beli,Integer harga_jual) {
@@ -65,6 +79,11 @@ public class Gudang {
 	        this.setstok(stok);
 	        this.setharga_beli(harga_beli);
 	        this.setharga_jual(harga_jual);
+	    }
+	    public Gudang(String sku, String noresi, Integer jumlah) {
+	    	this.setsku(sku);
+	    	this.setnoresi(noresi);
+	    	this.setjumlah(jumlah);
 	    }
 	    
 	    public Gudang(Integer stok) {
