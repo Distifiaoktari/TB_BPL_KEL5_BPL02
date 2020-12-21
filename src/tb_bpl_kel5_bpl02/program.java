@@ -9,10 +9,13 @@ public class program {
 	 static Scanner scanner;
 	    
 	 static DataGudang dataGudang;
-
-	public static void main(String[] args) throws Exception  {
+	 static KelolaUser kelolaUser;
+	 static DataUser dataUser = new DataUser();
+	
+	 public static void main(String[] args) throws Exception  {
 		scanner = new Scanner(System.in);
         dataGudang = new DataGudang();
+        kelolaUser = new KelolaUser();
         Integer option = 0;
          
        do {
@@ -31,7 +34,9 @@ public class program {
         
         switch (option) {
             case 1:
-            login();
+            System.out.println(" >> LOG IN <<");
+            System.out.println(" ");
+            dataUser.login();
             break;
             case 2:
             user();
@@ -109,11 +114,65 @@ public class program {
 	}
 
 
-	private static void login() {
+	private static void user() throws Exception {
 		// TODO Auto-generated method stub 
-	}
-	private static void user() {
-		// TODO Auto-generated method stub 
+		scanner = new Scanner(System.in);
+        kelolaUser = new KelolaUser();
+        Integer option = 0;
+		
+        do {
+        	System.out.println("====================================");
+            System.out.println("=============KELOLA USER============");
+            System.out.println("====================================");
+            System.out.println(" 1. Lihat User");
+            System.out.println(" 2. Tambah User");
+            System.out.println(" 3. Hapus User");
+            System.out.println(" 4. Edit User");
+            System.out.println(" 5. Cari User");
+            System.out.println(" 0. Keluar");
+            System.out.print("\nPilihan Anda (1/2/3/4/5/0)? ");
+            option = Integer.parseInt(scanner.nextLine());
+            System.out.println(" ");
+            
+            switch (option) {
+                case 1:
+                System.out.println(" >> LIHAT USER <<");
+                System.out.println(" ");
+                dataUser.lihatUser();
+                break;
+                
+                case 2:
+           		System.out.println(" >> SIGN UP <<");	
+           		System.out.println(" ");
+           		dataUser.SignUp();
+                break;
+                
+                case 3:
+                System.out.println(" >> HAPUS USER <<");
+                System.out.println(" ");
+                dataUser.hapusUser();
+                break;
+                
+                case 4:
+                System.out.println(" >> EDIT USER <<");
+                System.out.println(" ");
+                dataUser.editUser();
+                break;
+                
+                case 5:
+                System.out.println(" >> CARI USER <<");
+                System.out.println(" ");
+                dataUser.cariUser();
+                break;
+                
+                case 0:
+                break;
+                
+                default:
+                System.out.println("Input tidak valid");
+            }
+            tunggu();  
+        } while (option != 0); 
 	}
 	
 	
