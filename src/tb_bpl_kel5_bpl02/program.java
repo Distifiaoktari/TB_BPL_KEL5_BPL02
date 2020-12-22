@@ -108,6 +108,42 @@ public class program {
     
     
 	private static void laporan() {
+		scanner = new Scanner(System.in);
+		laporan = new Laporan();
+		Integer option = 0; 
+		 do {
+	        	System.out.println("====================================");
+	            System.out.println("===============LAPORAN==============");
+	            System.out.println("====================================");
+	            System.out.println(" 1. Laporan perhari");
+	            System.out.println(" 2. Laporan per bulan");
+	            System.out.println(" 0. Keluar");
+	            System.out.print("\nPilihan Anda (1/2/3/0)? ");
+	            option = Integer.parseInt(scanner.nextLine());
+	            System.out.println(" ");
+	            
+	            switch (option) {
+	                case 1:
+		                System.out.println(" >> LAPORAN PERHARI <<");
+		                System.out.println(" "); 
+		                laporan.laporanHari();
+		                
+	                break;
+	                
+	                case 2:
+		           		System.out.println(" >> LAPORAN PERBULAN <<");	
+		           		System.out.println(" ");
+		           		laporan.laporanBulan();
+	                break;
+	                
+	                case 0:
+	                    break;
+	                    
+	                    default:
+	                    System.out.println("Input tidak valid");
+	                }
+	                tunggu();  
+	            } while (option != 0);
 	    	}	
 		
 	
