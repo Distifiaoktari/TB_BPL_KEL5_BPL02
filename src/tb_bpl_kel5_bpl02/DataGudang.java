@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class DataGudang {
+	public class DataGudang {
 	    static String DB_URL = "jdbc:mysql://localhost:3306/bpltb_kel5?serverTimezone=Asia/Jakarta";
 	    static String USERNAME = "root";
 	    static String PASSWORD = "";
@@ -39,9 +39,9 @@ public class DataGudang {
 	            statement.setInt(5, gudang.getharga_jual());
 	            
 	            result = statement.executeUpdate();
-	            System.out.println("Berhasil input data");
+
 	        } catch (SQLException e) {
-	            System.out.println("Terjadi kesalahan input data");
+	            System.out.println(" Terjadi Kesalahan Input Data");
 	        }
 	        return result;
 	    }
@@ -68,7 +68,7 @@ public class DataGudang {
 	                listGudang.add(gudang);
 	            }
 	        }catch(SQLException e){
-	            System.out.println("Terjadi Kesalahan. Cek Data");
+	            System.out.println(" Terjadi Kesalahan. Cek Data");
 	            System.out.println(e.getMessage());
 	        }
 	        return listGudang;
@@ -88,7 +88,7 @@ public class DataGudang {
 	            statement.setString(5, sku);
 	            result = statement.executeUpdate();
 	        } catch (SQLException e) {
-	            System.out.println("Terjadi kesalahan query");
+	            System.out.println(" Terjadi kesalahan");
 	        }
 	        return result;
 	    }
@@ -129,7 +129,7 @@ public class DataGudang {
 	                    rs.getInt("harga_jual")
 	            );
 	        } catch (SQLException e) {
-	            System.out.println("Terjadi kesalahan query");
+	            System.out.println(" Terjadi Kesalahan");
 	        }
 	        return gudang;
 	    }
@@ -148,30 +148,30 @@ public class DataGudang {
 	            
 	            ResultSet result = statement.executeQuery();
 	            
-	            while(result.next()){
+	            if(result.next()){
 	               Gudang gudang = new Gudang(
 	                		result.getString("sku"),
 	                        result.getString("nama"),
 	                        result.getInt("stok"),
 	                        result.getInt("harga_beli"),
 	                        result.getInt("harga_jual")
-	                );
-	                listGudang.add(gudang);
-	                
+	               );
+	               listGudang.add(gudang);    
+	            }
+	            else {
+	            	System.out.println(" Barang Yang Dicari Tidak Tersedia");
 	            }
 	        } catch (SQLException e) {
-	            System.out.println("Terjadi kesalahan query");
+	            System.out.println(" Terjadi kesalahan");
 	        }
 	        return listGudang;
 	    }
+	    
 	    public static void restok ()throws SQLException
 	    {
 	    	
 			Scanner sc = new Scanner (System.in);
-			System.out.println("==========================");
-	        System.out.println("======RE-STOK BARANG======");
-	        System.out.println("==========================");
-			System.out.print  ("SKU Barang\t: ");
+			System.out.print  (" SKU Barang\t : ");
 			String sku = sc.nextLine();
 			
 			try {
@@ -181,21 +181,19 @@ public class DataGudang {
 				if (result.next()) {
 					String id = result.getString("sku");
 					Integer stok_db = result.getInt("stok");
-					System.out.print("Penambahan\t : ");
+					System.out.print(" Penambahan\t : ");
 					Integer tambah = sc.nextInt();
 					if (tambah>0) {
 					int newstock = Integer.valueOf(stok_db)+Integer.valueOf(tambah);
 					String sql2 = "UPDATE barang SET stok = '"+newstock+"' WHERE sku='"+sku+"'";
 					stmt.execute(sql2);
 					stmt.close();
-					System.out.println("stok berhasil diupdate!");}
+					System.out.println(" Stok berhasil diupdate!");}
 				
 				else {
-					System.out.println("bilangan yang dimasukkan salah!");	
+					System.out.println(" Bilangan yang dimasukkan salah!");	
 					}
 				}
-				
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

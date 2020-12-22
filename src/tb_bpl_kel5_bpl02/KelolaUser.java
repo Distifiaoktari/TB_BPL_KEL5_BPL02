@@ -25,7 +25,7 @@ public class KelolaUser {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Terjadi Kesalahan : Driver tidak ditemukan");
+            System.out.println(" Terjadi Kesalahan : Driver tidak ditemukan");
         }
     }
 	
@@ -67,13 +67,13 @@ public class KelolaUser {
              else {
             	 if(program.cek > 0) {
             		 System.out.println(" ");
-            		 System.out.println("Username Atau Password Yang Diinput Salah");
-            		 System.out.println("Silahkan Input Kembali");
+            		 System.out.println(" Username Atau Password Yang Diinput Salah");
+            		 System.out.println(" Silahkan Input Kembali");
             		 System.out.println(" ");
             	 }
             	 else if(program.cek <= 0) {
             		 System.out.println(" ");
-            		 System.out.println("Password Anda Telah Direset");
+            		 System.out.println(" Password Anda Telah Direset");
             		 String reset = "UPDATE user SET password=? WHERE email =?";
             		 statement = connection.prepareStatement(reset);
             		 statement.setString(1, resetPassword());
@@ -83,7 +83,7 @@ public class KelolaUser {
              }
     	}
     	catch(SQLException e){
-            System.out.println("Terjadi Kesalahan");
+            System.out.println(" Terjadi Kesalahan");
             System.out.println(e.getMessage());
         }
     	return result;
@@ -91,7 +91,7 @@ public class KelolaUser {
     
     
     public void Logout() throws Exception{
-    	System.out.println("Anda Telah Logout");
+    	System.out.println(" Anda Telah Logout");
     	program.main(null);
     }
     
@@ -123,11 +123,11 @@ public class KelolaUser {
 				}
 	        } 
 	        catch (SQLException e) {
-	            System.out.println("Terjadi Kesalahan Dalam Pembuatan Akun");
+	            System.out.println(" Terjadi Kesalahan Dalam Pembuatan Akun");
 	        }
     	}
     	else {
-    		System.out.println("Inputkan Email Dengan Alamat Yang Benar!");
+    		System.out.println(" Inputkan Email Dengan Alamat Yang Benar!");
     	}
         return result;
     }
@@ -153,7 +153,7 @@ public class KelolaUser {
             }
         }
         catch(SQLException e){
-            System.out.println("Terjadi Kesalahan. Silahkan Cek Kembali Data User");
+            System.out.println(" Terjadi Kesalahan. Silahkan Cek Kembali Data User");
             System.out.println(e.getMessage());
         }
         return listUser;
@@ -173,7 +173,7 @@ public class KelolaUser {
             result = statement.executeUpdate();
         } 
         catch (SQLException e) {
-            System.out.println("Terjadi Kesalahan Query");
+            System.out.println(" Terjadi Kesalahan");
         }
         return result;
     }
@@ -215,7 +215,7 @@ public class KelolaUser {
                     rs.getString("password")
             );
         } catch (SQLException e) {
-            System.out.println("Terjadi Kesalahan Query");
+            System.out.println(" Terjadi Kesalahan");
         }
         return user;
     }
@@ -235,17 +235,20 @@ public class KelolaUser {
             
             ResultSet result = statement.executeQuery();
             
-            while(result.next()){
+            if(result.next()){
                User user = new User(
                 		result.getString("username"),
                         result.getString("email"),
                         result.getString("password")
-                );
-                listUser.add(user);
-                
+               );
+               listUser.add(user);  
             }
+            else {
+            	System.out.println(" Username Yang Anda Cari Tidak Tersedia");
+            }
+            
         } catch (SQLException e) {
-            System.out.println("Terjadi Kesalahan Query");
+            System.out.println(" Terjadi Kesalahan");
         }
         return listUser;
     }

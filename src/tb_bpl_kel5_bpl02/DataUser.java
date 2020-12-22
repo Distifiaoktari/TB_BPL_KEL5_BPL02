@@ -26,11 +26,14 @@ public class DataUser {
 
 	
 	public static void login() throws Exception {
-		System.out.println("====LOGIN SISTEM====");
-		System.out.print("Email    : ");
+		System.out.println(" ");
+		System.out.println(" ------------------------------------------- ");
+        System.out.println("| >> LOGIN                                  |");
+        System.out.println(" ------------------------------------------- ");
+		System.out.print(" Email    : ");
 		String email = scanner.nextLine();
 		
-		System.out.print("Password : ");
+		System.out.print(" Password : ");
 		String password = scanner.nextLine();
 	        
 		User user = new User(email, password);
@@ -62,7 +65,8 @@ public class DataUser {
 		}
 		
 		if(kelolaUser.login(user) == 1){
-			 System.out.println("User berhasil Login!");
+			 System.out.println(" User berhasil Login!");
+			 System.out.println(" ------------------------------------------- ");
 			 program.menuUtama();
 			 
 		}
@@ -77,39 +81,39 @@ public class DataUser {
 	
 	void cariUser() throws SQLException {
 		System.out.println(" ");
-        System.out.print("Masukkan username yang akan dicari : ");
+        System.out.print(" Masukkan username yang akan dicari : ");
         String keyword = scanner.nextLine();
         
         ArrayList<User> listUser = kelolaUser.cari(keyword);
         
         for(User user : listUser){
-            System.out.print(user.getUsername());
-            System.out.print("\t");
-            System.out.print(user.getEmail());
-            System.out.print("\t");
-            System.out.println(user.getPassword());
+        	System.out.println(" ");
+            System.out.println(" Username : " + user.getUsername());
+            System.out.println(" Email    : " + user.getEmail());
+            System.out.println(" Password : " + user.getPassword());
+            System.out.println(" ");
         }
     }
 	
 	 void editUser() {
         lihatUser();
         System.out.println(" ");
-        System.out.print("username akun yang akan diedit ? ");
+        System.out.print(" Username akun yang akan diedit ? ");
         String username = scanner.nextLine();
             
         User user = kelolaUser.get(username);
             
-        System.out.print("Email ["+user.getEmail()+"] : ");
+        System.out.print(" Email ["+user.getEmail()+"] : ");
         String email = scanner.nextLine();
         
             
-        System.out.print("Password ["+user.getPassword()+"] : ");
+        System.out.print(" Password ["+user.getPassword()+"] : ");
         String password = scanner.nextLine();
             
         User userUpdate = new User(email, password);
             
         if(kelolaUser.updateUser(username, userUpdate) > 0){
-        	System.out.println("Update Akun Berhasil Dilakukan!");
+        	System.out.println(" Update Akun Berhasil Dilakukan!");
         }
     }
 	
@@ -117,26 +121,26 @@ public class DataUser {
 	void hapusUser(){        
         lihatUser();
         System.out.println(" ");
-        System.out.print("Username akun yang akan dihapus ? ");
+        System.out.print(" Username akun yang akan dihapus ? ");
         String username = (scanner.nextLine());
         
         if(kelolaUser.hapusUser(username) > 0 ){
-            System.out.println("User berhasil di hapus!");
+            System.out.println(" Data user berhasil di hapus!");
         }   
     }
 	
 	 void SignUp() {	        
-		 System.out.print("Username : ");
+		 System.out.print(" Username : ");
 		 String username = scanner.nextLine();
-		 System.out.print("Email    : ");
+		 System.out.print(" Email    : ");
 		 String email = scanner.nextLine();
-		 System.out.print("Password : ");
+		 System.out.print(" Password : ");
 		 String password = scanner.nextLine();
 	        
 		 User user = new User(username, email, password);
 	        
 		 if(kelolaUser.tambahUser(user) > 0){
-			 System.out.println("Akun Anda Berhasil Ditambahkan!");
+			 System.out.println(" Akun Anda Berhasil Ditambahkan!");
 		 }       
 	 }
 	
@@ -145,12 +149,9 @@ public class DataUser {
 	        
 		 for(Map.Entry list : listUser.entrySet()){  
 			 User userList = (User) list.getValue();
-	         System.out.print(list.getKey());
-	         System.out.print("\t| ");
-	         System.out.print(userList.getEmail());
-	         System.out.print("\t| ");
-	         System.out.print(userList.getPassword());
-	         System.out.print("\t| ");
+	         System.out.println(" Username : " + list.getKey());
+	         System.out.println(" Email    : " + userList.getEmail());
+	         System.out.println(" Password : " + userList.getPassword());
 	         System.out.println(" ");
 	     } 
 	 }
