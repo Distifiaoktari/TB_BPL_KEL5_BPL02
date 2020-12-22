@@ -166,5 +166,37 @@ import java.util.Scanner;
 	        }
 	        return listGudang;
 	    }
+		  public static void restok ()throws SQLException
+	    {
+	    	
+			Scanner sc = new Scanner (System.in);
+			System.out.print  (" SKU Barang\t : ");
+			String sku = sc.nextLine();
+			
+			try {
+				stmt = connection.createStatement();
+				String sql = "SELECT * FROM barang WHERE sku = '"+sku+"'";
+				ResultSet result = stmt.executeQuery(sql);
+				if (result.next()) {
+					String id = result.getString("sku");
+					Integer stok_db = result.getInt("stok");
+					System.out.print(" Penambahan\t : ");
+					Integer tambah = sc.nextInt();
+					if (tambah>0) {
+					int newstock = Integer.valueOf(stok_db)+Integer.valueOf(tambah);
+					String sql2 = "UPDATE barang SET stok = '"+newstock+"' WHERE sku='"+sku+"'";
+					stmt.execute(sql2);
+					stmt.close();
+					System.out.println(" Stok berhasil diupdate!");}
+				
+				else {
+					System.out.println(" Bilangan yang dimasukkan salah!");	
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    }
+}
 	    
 	  
