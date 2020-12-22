@@ -31,7 +31,7 @@ public void laporanHari() {
 	        String format  = "|%s\t| %s\t | %s\t | %s\t | %s\t | %s\t | %s\t | %s\t | %s\t |";
 	        String format1 = "|%d\t| %s\t\t | %s\t | %s\t | %s\t | %d\t\t | %d\t\t | %d\t\t | %d\t |";
 	        
-	        System.out.print("\nMasukkan Tanggal (YYYY/MM/DDD) : ");
+	        System.out.print("\nMasukkan Tanggal yang akan di lihat (YYYY/MM/DDD) : ");
 	        String tgl = scan.nextLine();
 	        
 	        String sql = "SELECT * FROM transaksi_detail INNER JOIN barang  ON transaksi_detail.sku = barang.sku INNER JOIN transaksi ON transaksi_detail.noresi = transaksi.noresi WHERE tanggal='"+tgl+"'";
