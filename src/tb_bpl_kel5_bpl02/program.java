@@ -12,7 +12,7 @@ public class program {
 	    
 	 static DataGudang dataGudang;
 	 static KelolaUser kelolaUser;
-	 static transaksipenjualan Transaksi;
+	 static transaksipenjualan trp;
 	 static DataUser dataUser = new DataUser();
 	 static Laporan laporan;
 
@@ -152,14 +152,9 @@ public class program {
 	private static void transaksi() {
 		// TODO Auto-generated method stub
 		System.out.println(" >> TRANSAKSI BARANG <<");
-		Transaksi = new transaksipenjualan();
-		Transaksi.getAll();
-		Transaksi.skuinput();
-		Transaksi.Jumlahbarang();
-		Transaksi.jmlprocess();
-		Transaksi.hasilorder();
-		Transaksi.input();
-		Transaksi.show();
+		trp = new transaksipenjualan();
+			trp.noresi();
+			trp.insertall();
 	}
 
 
